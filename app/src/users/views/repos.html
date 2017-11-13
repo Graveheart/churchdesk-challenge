@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Repositories for <span class="bolded">{{vm.user.name}}</span> <span class="badge">{{vm.user.repoCount}}</span>
+    </div>
+    <div class="panel-body">
+        <div outside-click="vm.filerActive = false">
+            <div class="inner-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input class="form-control ng-pristine ng-valid" type="text" ng-model="vm.search.name"
+                       ng-focus="vm.filerActive = true" placeholder="Search Repositories"/>
+            </div>
+            <div class="list-group list-group-choose repo-list">
+                <div class="list-group-item" ng-repeat="repo in vm.repos | filter:vm.search:strict">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <span class="repo-name">{{repo.name}}</span>
+                            <span class="repo-desc"> {{repo.description}}</span>
+                            </div>
+                        <div class="col-xs-2">
+                            <span class="rating"
+                                    ><i class="glyphicon glyphicon-star"></i>{{repo.stars}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-3 date-col">
+                            <span class="date-label">Last Updated:</span>
+                            <span class="date">Mar 2, 2016</span>
+                        </div>
+                        <div class="col-xs-7 col-md-8 date-col">
+                            <span class="date-label">Created:</span>
+                            <span class="date">Oct 15, 2014</span>
+                        </div>
+
+                        <div class="col-xs-1">
+                            <span class="badge forks"
+                                  ng-class="{'red-badge': repo.forks < 5, 'green-badge': repo.forks > 100}"><i class="fa fa-code-fork" aria-hidden="true"></i> {{repo.forks}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
